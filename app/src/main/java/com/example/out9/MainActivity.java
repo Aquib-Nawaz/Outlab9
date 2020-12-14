@@ -61,15 +61,15 @@ public class MainActivity extends AppCompatActivity {
         mainRecycler.setLayoutManager(linearLayoutManager);
         mainRecycler.setAdapter(mainArticleAdapter[0]);
         final APIInterface apiService = ApiClient.getClient().create(APIInterface.class);
-        Call<ResponseModel> call = apiService.getLatestNews("techcrunch","en",API_KEY);
+        Call<ResponseModel> call = apiService.getLatestNews("en",API_KEY);
         call.enqueue(new Callback<ResponseModel>() {
             @Override
             public void onResponse(Call<ResponseModel>call, Response<ResponseModel> response) {
                 Log.d("JSON", String.valueOf(response));
-                if(response.body().getStatus().equals("ok")) {
+                if (response.body().getStatus().equals("ok")) {
                     List<Article> articleList = response.body().getArticles();
                     Log.d("SIZE", String.valueOf(articleList.size()));
-                    if(articleList.size()>0) {
+                    if (articleList.size() > 0) {
                         mainArticleAdapter[0] = new MainArticleAdapter(articleList);
                         mainRecycler.setAdapter(mainArticleAdapter[0]);
                     }
