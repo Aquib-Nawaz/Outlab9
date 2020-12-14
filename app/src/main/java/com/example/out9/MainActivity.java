@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         mainRecycler.setLayoutManager(linearLayoutManager);
         mainRecycler.setAdapter(mainArticleAdapter[0]);
         final APIInterface apiService = ApiClient.getClient().create(APIInterface.class);
-        Call<ResponseModel> call = apiService.getLatestNews("en",API_KEY);
+        Call<ResponseModel> call = apiService.getLatestNews("in","en",API_KEY);
         call.enqueue(new Callback<ResponseModel>() {
             @Override
             public void onResponse(Call<ResponseModel>call, Response<ResponseModel> response) {
